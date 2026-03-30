@@ -41,7 +41,6 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-cream/60">
               <li><Link href="/boutique" className="hover:text-gold transition-colors">Boutique en ligne</Link></li>
               <li><Link href="/diagnostic" className="hover:text-gold transition-colors">Diagnostic capillaire</Link></li>
-              <li><Link href="/rendez-vous" className="hover:text-gold transition-colors">Prise de rendez-vous</Link></li>
               <li><Link href="/gammes" className="hover:text-gold transition-colors">Nos gammes</Link></li>
             </ul>
           </div>

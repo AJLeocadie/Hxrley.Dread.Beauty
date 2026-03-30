@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { Lock, Package, ShoppingCart, Calendar, Users, BarChart3, LogOut } from "lucide-react";
+import { Lock, Package, ShoppingCart, Users, BarChart3, LogOut } from "lucide-react";
 import { useAdminStore } from "@/store/admin";
 
 export default function AdminPage() {
-  const { isAuthenticated, login, logout, products, orders, appointments, diagnostics } = useAdminStore();
+  const { isAuthenticated, login, logout, products, orders, diagnostics } = useAdminStore();
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
@@ -49,7 +49,6 @@ export default function AdminPage() {
   const stats = [
     { label: "Produits", value: products.length, icon: <Package className="w-5 h-5" />, href: "/admin/produits" },
     { label: "Commandes", value: orders.length, icon: <ShoppingCart className="w-5 h-5" />, href: "/admin/commandes" },
-    { label: "Rendez-vous", value: appointments.length, icon: <Calendar className="w-5 h-5" />, href: "/admin/rendez-vous" },
     { label: "Diagnostics", value: diagnostics.length, icon: <Users className="w-5 h-5" />, href: "#" },
   ];
 
@@ -144,49 +143,6 @@ export default function AdminPage() {
           </div>
         </div>
 
-        {/* Recent appointments */}
-        <div>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-cream">Rendez-vous récents</h2>
-            <Link href="/admin/rendez-vous" className="text-sm text-gold hover:text-gold-light">Voir tout</Link>
-          </div>
-          <div className="bg-dark-card border border-dark-border rounded-xl overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-dark-border">
-                    <th className="text-left px-4 py-3 text-xs text-cream/50 uppercase">Client</th>
-                    <th className="text-left px-4 py-3 text-xs text-cream/50 uppercase">Service</th>
-                    <th className="text-left px-4 py-3 text-xs text-cream/50 uppercase">Date</th>
-                    <th className="text-left px-4 py-3 text-xs text-cream/50 uppercase">Heure</th>
-                    <th className="text-left px-4 py-3 text-xs text-cream/50 uppercase">Statut</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {appointments.slice(0, 5).map((apt) => (
-                    <tr key={apt.id} className="border-b border-dark-border/50">
-                      <td className="px-4 py-3 text-sm text-cream">{apt.name}</td>
-                      <td className="px-4 py-3 text-sm text-cream/70">{apt.service}</td>
-                      <td className="px-4 py-3 text-sm text-cream/70">{apt.date}</td>
-                      <td className="px-4 py-3 text-sm text-cream/70">{apt.time}</td>
-                      <td className="px-4 py-3">
-                        <span className={`text-xs px-2 py-1 rounded-full ${
-                          apt.status === "pending" ? "bg-yellow-500/10 text-yellow-400" :
-                          apt.status === "confirmed" ? "bg-green-500/10 text-green-400" :
-                          "bg-red-500/10 text-red-400"
-                        }`}>
-                          {apt.status === "pending" ? "En attente" :
-                           apt.status === "confirmed" ? "Confirmé" :
-                           "Annulé"}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

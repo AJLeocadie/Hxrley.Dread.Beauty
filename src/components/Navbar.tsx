@@ -39,7 +39,6 @@ const menuItems = [
     ],
   },
   { label: "Diagnostic", href: "/diagnostic" },
-  { label: "Rendez-vous", href: "/rendez-vous" },
 ];
 
 export default function Navbar() {

@@ -219,15 +219,6 @@ export const needs = [
   { id: "pousse", name: "Pousse", icon: "trending-up", description: "Stimulez la croissance capillaire" },
 ];
 
-export const services = [
-  { id: "locks", name: "Locks / Dreadlocks", duration: "2h-4h", price: 80 },
-  { id: "retwist", name: "Retwist", duration: "1h-2h", price: 50 },
-  { id: "wash", name: "Lavage & Soin", duration: "45min-1h", price: 35 },
-  { id: "soins", name: "Soin Profond", duration: "1h-1h30", price: 45 },
-  { id: "coupe", name: "Coupe", duration: "30min-1h", price: 30 },
-  { id: "coloration", name: "Coloration", duration: "1h30-2h", price: 60 },
-];
-
 export const defaultProducts: Product[] = [
   {
     id: "1",
