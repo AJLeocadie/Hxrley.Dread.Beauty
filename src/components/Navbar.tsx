@@ -9,11 +9,11 @@ const menuItems = [
     label: "Vos Besoins",
     href: "/boutique",
     submenu: [
-      { label: "Laver", href: "/boutique?need=laver" },
-      { label: "Soigner", href: "/boutique?need=soigner" },
-      { label: "Coiffer", href: "/boutique?need=coiffer" },
-      { label: "Brillance", href: "/boutique?need=brillance" },
-      { label: "Pousse", href: "/boutique?need=pousse" },
+      { label: "Laver", href: "/besoins/laver" },
+      { label: "Soigner", href: "/besoins/soigner" },
+      { label: "Coiffer", href: "/besoins/coiffer" },
+      { label: "Brillance", href: "/besoins/brillance" },
+      { label: "Pousse", href: "/besoins/pousse" },
     ],
   },
   {

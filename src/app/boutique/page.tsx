@@ -5,7 +5,7 @@ import { ShoppingBag, ShoppingCart, Filter, X, Check } from "lucide-react";
 import { useAdminStore } from "@/store/admin";
 import { useCartStore } from "@/store/cart";
 import { categories, needs, gammes } from "@/lib/data";
-import { ingredientIcons, gammeColors } from "@/components/FruitIcons";
+import ProductIllustration from "@/components/ProductIllustration";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 
@@ -135,24 +135,10 @@ function BoutiqueContent() {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
                 {filtered.map((product) => {
-                  const colors = gammeColors[product.gamme] || { from: "#c9a84c", to: "#e0c76a" };
-                  const mainIngredient = product.ingredients[0];
-                  const IconComp = mainIngredient ? ingredientIcons[mainIngredient] : null;
                   return (
                     <div key={product.id} className="group rounded-2xl bg-dark-card border border-dark-border hover:border-gold/20 overflow-hidden card-hover">
                       <Link href={`/boutique/${product.slug}`}>
-                        <div
-                          className="aspect-[4/3] flex items-center justify-center relative overflow-hidden"
-                          style={{ background: `linear-gradient(135deg, ${colors.from}12, ${colors.to}06)` }}
-                        >
-                          {IconComp ? (
-                            <div className="group-hover:scale-110 transition-transform duration-500">
-                              <IconComp className="w-24 h-24" />
-                            </div>
-                          ) : (
-                            <ShoppingBag className="w-12 h-12 text-gold/15" />
-                          )}
-                        </div>
+                        <ProductIllustration ingredients={product.ingredients} gammeId={product.gamme} size="md" />
                       </Link>
                       <div className="p-5">
                         <Link href={`/boutique/${product.slug}`}>

@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { ArrowLeft, ShoppingBag, Check } from "lucide-react";
+import { ArrowLeft, Check } from "lucide-react";
 import { gammes, defaultProducts } from "@/lib/data";
 import { ingredientIcons, gammeColors } from "@/components/FruitIcons";
+import ProductIllustration from "@/components/ProductIllustration";
 import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
@@ -83,26 +84,13 @@ export default async function GammeDetailPage({ params }: { params: Promise<{ sl
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
               {products.map((product) => {
-                const mainIngredient = product.ingredients[0];
-                const IconComp = mainIngredient ? ingredientIcons[mainIngredient] : null;
                 return (
                   <Link
                     key={product.id}
                     href={`/boutique/${product.slug}`}
                     className="group rounded-2xl bg-dark-card border border-dark-border hover:border-gold/20 overflow-hidden card-hover"
                   >
-                    <div
-                      className="aspect-square flex items-center justify-center relative overflow-hidden"
-                      style={{ background: `linear-gradient(135deg, ${colors.from}10, ${colors.to}05)` }}
-                    >
-                      {IconComp ? (
-                        <div className="group-hover:scale-110 transition-transform duration-500">
-                          <IconComp className="w-28 h-28" />
-                        </div>
-                      ) : (
-                        <ShoppingBag className="w-12 h-12 text-gold/20" />
-                      )}
-                    </div>
+                    <ProductIllustration ingredients={product.ingredients} gammeId={product.gamme} size="lg" />
                     <div className="p-5">
                       <h3 className="font-semibold text-cream text-sm mb-2 group-hover:text-gold transition-colors line-clamp-2">
                         {product.name}

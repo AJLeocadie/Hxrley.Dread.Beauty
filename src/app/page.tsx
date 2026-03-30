@@ -113,7 +113,7 @@ export default function HomePage() {
             {needs.map((need) => (
               <Link
                 key={need.id}
-                href={`/boutique?need=${need.id}`}
+                href={`/besoins/${need.id}`}
                 className="flex flex-col items-center p-6 rounded-2xl bg-dark border border-dark-border hover:border-gold/40 card-hover text-center group"
               >
                 <div className="text-gold mb-3 group-hover:scale-110 transition-transform duration-300">{iconMap[need.icon]}</div>

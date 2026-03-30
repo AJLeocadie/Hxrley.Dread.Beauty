@@ -5,7 +5,8 @@ import { ArrowLeft, ShoppingCart, Check, ShoppingBag } from "lucide-react";
 import { useAdminStore } from "@/store/admin";
 import { useCartStore } from "@/store/cart";
 import { gammes } from "@/lib/data";
-import { ingredientIcons, gammeColors } from "@/components/FruitIcons";
+import { ingredientIcons } from "@/components/FruitIcons";
+import ProductIllustration from "@/components/ProductIllustration";
 
 export default function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
@@ -29,9 +30,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
   }
 
   const gamme = gammes.find((g) => g.id === product.gamme);
-  const colors = gammeColors[product.gamme] || { from: "#c9a84c", to: "#e0c76a", accent: "#e0c76a" };
-  const mainIngredient = product.ingredients[0];
-  const IconComp = mainIngredient ? ingredientIcons[mainIngredient] : null;
 
   const handleAdd = () => {
     for (let i = 0; i < qty; i++) addItem(product);
@@ -48,30 +46,12 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 animate-fade-in-up">
           {/* Image */}
-          <div
-            className="aspect-square rounded-2xl flex items-center justify-center relative overflow-hidden"
-            style={{ background: `linear-gradient(135deg, ${colors.from}12, ${colors.to}06)` }}
-          >
-            <div className="absolute inset-0 opacity-[0.03]" style={{ background: `radial-gradient(circle at 50% 50%, ${colors.accent}, transparent 60%)` }} />
-            {IconComp ? (
-              <div className="relative z-10">
-                <IconComp className="w-44 h-44 sm:w-56 sm:h-56" />
-              </div>
-            ) : (
-              <ShoppingBag className="w-24 h-24 text-gold/15" />
-            )}
-            {/* Secondary ingredients */}
-            <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-3">
-              {product.ingredients.slice(1, 4).map((ing) => {
-                const SecIcon = ingredientIcons[ing];
-                return SecIcon ? (
-                  <div key={ing} className="w-10 h-10 rounded-full bg-dark/60 backdrop-blur-sm flex items-center justify-center border border-dark-border/50">
-                    <SecIcon className="w-7 h-7" />
-                  </div>
-                ) : null;
-              })}
-            </div>
-          </div>
+          <ProductIllustration
+            ingredients={product.ingredients}
+            gammeId={product.gamme}
+            size="xl"
+            className="rounded-2xl"
+          />
 
           {/* Info */}
           <div>
